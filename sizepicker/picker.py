@@ -416,4 +416,4 @@ class Picker:
         with open(self.output/f"{self.name}_coords.txt", "w") as f:
             np.savetxt(f, boxs_XYZ, delimiter=' ', fmt='%s %s %s')
 
-        return
+        return boxs_XYZ

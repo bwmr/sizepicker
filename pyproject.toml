@@ -34,7 +34,7 @@ homepage = "https://github.com/bwmr/sizepicker"
 repository = "https://github.com/bwmr/sizepicker"
 
 [project.scripts]
-sizepicker = "sizepicker:cli"
+sizepicker = "sizepicker.interface:cli"
 
 [tool.ruff]
 # partially copied from github.com/teamtomo/membrain-seg
