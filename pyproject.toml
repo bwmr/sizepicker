@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools"]
+
+[tool.setuptools.packages.find]
+include = ["sizepicker"]
+
+[project]
+name = "sizepicker"
+description = "Some scripts to facilitate subtomogram-averaging workflows."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "GPL-3.0-or-later"}
+authors = [
+    {email = "b.wimmer@bioc.uzh.ch", name = "Benedikt Wimmer"},
+    ]
+
+version = "0.1"
+
+dependencies = [
+    "click",
+    "mrcfile",
+    "numpy",
+    "scipy",
+    "scikit-image"
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    ]
+
+[project.urls]
+homepage = "https://github.com/bwmr/sizepicker"
+repository = "https://github.com/bwmr/sizepicker"
+
+[project.scripts]
+sizepicker = "sizepicker:cli"
+
+[tool.ruff]
+# partially copied from github.com/teamtomo/membrain-seg
+line-length = 88
+target-version = "py38"
+lint.extend-select = [
+    "E",    # style errors
+    "W",    # style warnings
+    "F",    # flakes
+    "D",    # pydocstyle
+    "I",    # isort
+    "U",    # pyupgrade
+    "C",    # flake8-comprehensions
+    "B",    # flake8-bugbear
+    "A001", # flake8-builtins
+    "RUF",  # ruff-specific rules
+]
+lint.extend-ignore = [
+    "D100", # Missing docstring in public module
+    "D107", # Missing docstring in __init__
+    "D203", # 1 blank line required before class docstring
+    "D212", # Multi-line docstring summary should start at the first line
+    "D213", # Multi-line docstring summary should start at the second line
+    "D401", # First line should be in imperative mood
+    "D413", # Missing blank line after last section
+    "D416", # Section name should end with a colon
+    "C901", # Function too complex -> noted as TODO in code
+    "RUF005", # Interferes with subprocess.run,
+    "RUF015", # Prefer next(iter) over iter[0] 
+    "B012", # We use try/ finally a lot to avoid raising exceptions
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
