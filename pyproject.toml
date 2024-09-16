@@ -6,10 +6,9 @@ include = ["sizepicker"]
 
 [project]
 name = "sizepicker"
-description = "Some scripts to facilitate subtomogram-averaging workflows."
+description = "Pick blobs in tomograms."
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "GPL-3.0-or-later"}
 authors = [
     {email = "b.wimmer@bioc.uzh.ch", name = "Benedikt Wimmer"},
     ]
