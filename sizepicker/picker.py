@@ -1,6 +1,5 @@
 import subprocess
 from pathlib import Path
-from typing import Optional
 
 import mrcfile
 import numpy as np
@@ -61,20 +60,20 @@ class Picker:
                  output: Path,
                  radius: int = 100,
                  contamination_binning: int = 1,
-                 override_angpix: Optional(float) = None):
+                 override_angpix: float = None): #noqa: RUF013
 
-        self.name=tomogram.stem
-        self.output=output
-        self.radius=radius
+        self.name = tomogram.stem
+        self.output = output
+        self.radius = radius
         self.contamination_binning = contamination_binning
 
         self.rec = mrcfile.read(tomogram)
 
         if override_angpix is None:
             with mrcfile.mmap(tomogram, mode='r') as f:
-                self.pixelsize=float(f.voxel_size.x)
+                self.pixelsize = float(f.voxel_size.x)
         else:
-            self.pixelsize=override_angpix
+            self.pixelsize = override_angpix
 
         # box size for checking whether pick contains density
         self.tilesize = int(3 * radius / self.pixelsize)
@@ -386,7 +385,11 @@ class Picker:
         stdthreshold: actual SD threshold, from Picker.prefilt()
         remove_edge: remove particles with higher background than foreground SD?
 
-        Writes out coordinate file in XYZ order to output folder.
+        Returns
+        -------
+        boxs_XYZ: XYZ coordiantes of retained particles.
+
+        Also writes out coordinate file in XYZ order to output folder.
 
         """
         boxs_ZYX = []
