@@ -416,7 +416,7 @@ class Picker:
         boxs_XYZ = boxs_ZYX[:,[2,1,0]]
 
         # Write out coordinates as txt file
-        with open(self.output/f"{self.name}_coords.txt", "w") as f:
+        with open(self.output/f"{self.name}.coords", "w") as f:
             np.savetxt(f, boxs_XYZ, delimiter=' ', fmt='%s %s %s')
 
         return boxs_XYZ
