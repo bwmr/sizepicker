@@ -106,8 +106,9 @@ def cli(radius,
     for tomo in tomograms:
 
         tomo = Path(tomo)
+        output_dir = Path(output_dir)
 
-        print("working on")
+        print(f"working on {tomo.name}")
 
         p = Picker(tomo,
                    output_dir,
@@ -121,14 +122,14 @@ def cli(radius,
                          minsize_cont,
                          dilate_cont)
 
-        print("Contamination Mask written to..")
+        print(f"Contamination Mask written to {output_dir.stem}")
 
         boxes, particles = p.detect(mask,
                                     radius_times,
                                     inhibit,
                                     detection_z)
 
-        print("Initial Picks")
+        print(f"Found {len(boxes)} Initial Picks")
 
         metrics, threshold = p.prefilt(particles,
                                        stdtimes_pick)
@@ -138,4 +139,5 @@ def cli(radius,
                threshold,
                remove_edge)
 
-        print(f"Wrote {len(boxs_XYZ)} picks to ...")
+        print(f"Wrote {len(boxs_XYZ)} picks to {output_dir.stem}")
+        print("\n")
