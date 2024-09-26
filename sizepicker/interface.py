@@ -2,7 +2,7 @@ from pathlib import Path
 
 import click
 
-from .picker import Picker
+from sizepicker.picker import Picker
 
 
 @click.command()
@@ -108,7 +108,7 @@ def cli(radius,
         tomo = Path(tomo)
         output_dir = Path(output_dir)
 
-        print(f"working on {tomo.name}")
+        print(f"Working on {tomo.name}")
 
         p = Picker(tomo,
                    output_dir,
@@ -122,14 +122,14 @@ def cli(radius,
                          minsize_cont,
                          dilate_cont)
 
-        print(f"Contamination Mask written to {output_dir.stem}")
+        print(f"Contamination mask written to {output_dir.stem}")
 
         boxes, particles = p.detect(mask,
                                     radius_times,
                                     inhibit,
                                     detection_z)
 
-        print(f"Found {len(boxes)} Initial Picks")
+        print(f"Found {len(boxes)} initial picks.")
 
         metrics, threshold = p.prefilt(particles,
                                        stdtimes_pick)

@@ -412,6 +412,8 @@ class Picker:
             boxs_ZYX+=b
 
         # Transform from ZYX to XYZ
+        # TODO: handle case where no particles are left after filtering
+
         boxs_ZYX =  np.stack(boxs_ZYX)
         boxs_XYZ = boxs_ZYX[:,[2,1,0]]
 
